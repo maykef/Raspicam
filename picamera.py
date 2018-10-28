@@ -8,8 +8,6 @@ import os,glob
 
 i=0
 
-#imagePath = os.path.join('.','Pictures')
-
 for dir in glob.glob('Pictures'):
   if os.path.isdir(dir):
       latest_folder = os.path.getctime(dir)
