@@ -8,6 +8,8 @@ import os,glob
 
 i=0
 
+#imagePath = os.path.join('.','Pictures')
+
 for dir in glob.glob('Pictures'):
   if os.path.isdir(dir):
       latest_folder = os.path.getctime(dir)
@@ -20,11 +22,13 @@ camera0 = picamera.PiCamera(0)
 camera1 = picamera.PiCamera(1)
 
 with camera0, camera1:
-    camera0.sensor_mode = 2
-    camera1.sensor_mode = 2
-    print('Camera mode set to: ',camera0.sensor_mode)
+    camera0.sensor_mode = 5
+    camera1.sensor_mode = 5
+    print('Camera 0 mode set to: ',camera0.sensor_mode)
+    print('Camera 1 mode set to: ',camera1.sensor_mode)
     camera0.iso = 100
     camera1.iso = 100
+    sleep(2)
     camera0.shutter_speed = camera0.exposure_speed
     camera1.shutter_speed = camera1.exposure_speed
     print('Camera shutter speed: ',camera0.shutter_speed)
@@ -44,9 +48,9 @@ with camera0, camera1:
         result1 = camera1.capture(output1, 'jpeg', bayer=True)
         debase = (output0.array.astype(np.uint8))
         debase1 = (output1.array.astype(np.uint8))
-        b = debase[:,:,0];
+        r = debase[:,:,0];
         g = debase[:,:,1];
-        r = debase[:,:,2];
+        b = debase[:,:,2];
         n = debase1[:,:,0];
         imageName1 = os.path.join('Pictures',newDirName,'IMG_{:04d}_1.tiff'.format(i))
         imageName2 = os.path.join('Pictures',newDirName,'IMG_{:04d}_2.tiff'.format(i))
