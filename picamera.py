@@ -29,9 +29,10 @@ with camera0, camera1:
     camera0.iso = 100
     camera1.iso = 100
     sleep(2)
-    camera0.shutter_speed = camera0.exposure_speed
-    camera1.shutter_speed = camera1.exposure_speed
-    print('Camera shutter speed: ',camera0.shutter_speed)
+    camera0.shutter_speed = 11219
+    camera1.shutter_speed = 11219
+    print('Camera 0 shutter speed: ',camera0.shutter_speed)
+    print('Camera 1 shutter speed: ',camera1.shutter_speed)
     camera0.exposure_mode = 'off'
     camera1.exposure_mode = 'off'
     g = camera0.awb_gains
