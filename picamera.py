@@ -30,7 +30,7 @@ with camera0, camera1:
     sleep(2)
     camera0.shutter_speed = camera0.exposure_speed
     camera1.shutter_speed = camera1.exposure_speed
-    print('Camera shutter speed: ',camera0.sutter_seed)
+    print('Camera shutter speed: ',camera0.shutter_speed)
     camera0.exposure_mode = 'off'
     camera1.exposure_mode = 'off'
     g = camera0.awb_gains
