@@ -24,13 +24,13 @@ camera1 = picamera.PiCamera(1)
 with camera0, camera1:
     camera0.sensor_mode = 6
     camera1.sensor_mode = 6
-    #camera0.resolution = (2592, 1944)
-    #camera1.resolution = (2592, 1944)
+    print('Camera mode set to: ',camera0.sensor_mode)
     camera0.iso = 100
     camera1.iso = 100
     sleep(2)
     camera0.shutter_speed = camera0.exposure_speed
     camera1.shutter_speed = camera1.exposure_speed
+    print('Camera shutter speed: ',camera0.sutter_seed)
     camera0.exposure_mode = 'off'
     camera1.exposure_mode = 'off'
     g = camera0.awb_gains
@@ -39,8 +39,8 @@ with camera0, camera1:
     camera1.awb_mode = 'off'
     camera0.awb_gains = g
     camera1.awb_gains = d
-    print('Capturing images...')
     while True:
+        print('Capturing images...')
         output0 = picamera.array.PiBayerArray(camera0)
         output1 = picamera.array.PiBayerArray(camera1)
         result = camera0.capture(output0, 'jpeg', bayer=True)
@@ -60,4 +60,5 @@ with camera0, camera1:
         cv2.imwrite(imageName3,r);
         cv2.imwrite(imageName4,n);
         print('Done!')
+        sleep(1)
         i=i+1
