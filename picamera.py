@@ -17,12 +17,6 @@ for dir in glob.glob('Pictures'):
       print('Joining '+folder_time+' folder')
       newDirName= os.path.join(folder_time)
 
-#if os.path.exists(imagePath):
-#    timestr = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-#    now = datetime.now()
-#    newDirName = now.strftime('%Y-%m-%d %H:%M:%S')
-#    os.mkdir(os.path.join('Pictures',newDirName))
-#    print('Creating '+newDirName+' folder')
 
 camera0 = picamera.PiCamera(0)
 camera1 = picamera.PiCamera(1)
@@ -45,8 +39,8 @@ with camera0, camera1:
     camera1.awb_mode = 'off'
     camera0.awb_gains = g
     camera1.awb_gains = d
+    print('Capturing images...')
     while True:
-        print('Capturing images...')
         output0 = picamera.array.PiBayerArray(camera0)
         output1 = picamera.array.PiBayerArray(camera1)
         result = camera0.capture(output0, 'jpeg', bayer=True)
