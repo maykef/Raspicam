@@ -25,7 +25,6 @@ def start_cam1(conn):
     camera = picamera.PiCamera(0)
     camera.sensor_mode = 1
     camera.iso = 100
-    #sleep(0.6)
     camera.shutter_speed = camera.exposure_speed
     camera.exposure_mode = 'off'
     g = camera.awb_gains
@@ -43,7 +42,6 @@ def start_cam2(conn):
     camera = picamera.PiCamera(1)
     camera.sensor_mode = 1
     camera.iso = 100
-    #sleep(0.6)
     camera.shutter_speed = camera.exposure_speed
     camera.exposure_mode = 'off'
     g = camera.awb_gains
