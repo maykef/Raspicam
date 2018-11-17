@@ -34,7 +34,6 @@ def start_cam1(conn):
     print('Starting capture')
     output = picamera.array.PiBayerArray(camera)
     camera.capture(output, 'jpeg', bayer=True)
-    #debase = (output.demosaic() >> 2).astype(np.uint8)
     debase = ((output.array >>2).astype(np.uint8))
     conn.send(debase)
 
@@ -53,7 +52,6 @@ def start_cam2(conn):
     print('Starting capture')
     output = picamera.array.PiBayerArray(camera)
     camera.capture(output, 'jpeg', bayer=True)
-    #debase1 = (output.demosaic() >> 2).astype(np.uint8)
     debase = ((output.array >>2).astype(np.uint8))
     conn.send(debase)
 
