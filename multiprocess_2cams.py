@@ -1,3 +1,4 @@
+import RPi.GPIO as GPIO
 import glob
 import os
 from datetime import datetime
@@ -7,6 +8,8 @@ import numpy as np
 import picamera.array
 import picamera
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(13,GPIO.IN)
 
 
 def new_folder():
@@ -129,17 +132,18 @@ def save_pic2(conn):
 
 if __name__ == '__main__':
     new_folder()
-    start_conn, save_conn = Pipe()
-    start1_conn, save2_conn = Pipe()
-    start = Process(target=start_cam1, args=(start_conn,))
-    start1 = Process(target=start_cam2, args=(start1_conn,))
-    save = Process(target=save_pic1, args=(save_conn,))
-    save2 = Process(target=save_pic2, args=(save2_conn,))
-    start.start()
-    start1.start()
-    save.start()
-    save2.start()
-    start.join()
-    save.join()
-    start1.join()
-    save2.join()
+    while True:
+        input_value = GPIO.input(13)
+        if input_value == False:
+            print('Button Pressed... Proceeding with capture:')
+            start_conn, save_conn = Pipe()
+            start1_conn, save2_conn = Pipe()
+            start = Process(target=start_cam1, args=(start_conn,))
+            start1 = Process(target=start_cam2, args=(start1_conn,))
+            save = Process(target=save_pic1, args=(save_conn,))
+            save2 = Process(target=save_pic2, args=(save2_conn,))
+            start.start()
+            save.start()
+            start1.start()
+            save2.start()
+            start.join()
